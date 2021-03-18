@@ -13,8 +13,7 @@
 <body>
     <div class='container'>
         <div class='login-box'>
-            <div class='row'>
-                
+            <div class='row'> 
                 <div class='col-md-6 login-left'>
                     <h2> Login Here </h2>
                     <form method='post' action='validation.php'>

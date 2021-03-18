@@ -2,7 +2,6 @@
     // start session
     session_start();
 
-    header('location: login.php');
 
     //connect to a database
     $con = mysqli_connect('localhost', 'root');
@@ -15,7 +14,7 @@
     $passwd = $_POST['password'];
 
     //create table in the database
-    $s = " select * from usertable where name = '$name'";
+    $s = " select * from usertable where name = '$name' && password = '$passwd'";
 
     //create a variable to store the database query
     $result = mysqli_query($con, $s);
@@ -23,17 +22,13 @@
     // create a variable to count no of times for name in the database table
     $num =mysqli_num_rows($result);
 
-    //check for duplication of name
+   
     if($num == 1) {
-        echo 'Username already exist';
-    } else {
-        //create a new row
-        $reg = "insert into usertable(name, password) values('$name', '$passwd')";
-        
-        //store in the database
-        mysqli_query($con, $reg);
+        $_SESSION['username'] = $name ;
+        header('location: home.php');
 
-        echo 'Registration Successful';
+    } else {
+       header('location: login.php');
     }
 
 ?>
